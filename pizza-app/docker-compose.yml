@@ -16,6 +16,11 @@ services:
     environment:
       - KITCHEN_SERVICE_URL=http://kitchen-service:3001
       - DELIVERY_SERVICE_URL=http://delivery-service:3002
+      - NODE_OPTIONS=-r @opentelemetry/auto-instrumentations-node/register
+      - OTEL_SERVICE_NAME=order-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${DASH0_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Bearer ${DASH0_AUTH_TOKEN}
+      - OTEL_METRICS_EXPORTER=otlp
     healthcheck:
       test:
         - CMD
@@ -38,6 +43,11 @@ services:
       - "3001:3001"
     environment:
       - SLOW_KITCHEN=${SLOW_KITCHEN:-false}
+      - NODE_OPTIONS=-r @opentelemetry/auto-instrumentations-node/register
+      - OTEL_SERVICE_NAME=kitchen-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${DASH0_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Bearer ${DASH0_AUTH_TOKEN}
+      - OTEL_METRICS_EXPORTER=otlp
     healthcheck:
       test:
         - CMD
@@ -55,6 +65,11 @@ services:
       - "3002:3002"
     environment:
       - NO_DRIVERS=${NO_DRIVERS:-false}
+      - NODE_OPTIONS=-r @opentelemetry/auto-instrumentations-node/register
+      - OTEL_SERVICE_NAME=delivery-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${DASH0_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Bearer ${DASH0_AUTH_TOKEN}
+      - OTEL_METRICS_EXPORTER=otlp
     healthcheck:
       test:
         - CMD
