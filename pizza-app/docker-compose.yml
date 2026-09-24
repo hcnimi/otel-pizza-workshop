@@ -19,6 +19,7 @@ services:
       - NODE_OPTIONS=-r @opentelemetry/auto-instrumentations-node/register
       - OTEL_SERVICE_NAME=order-service
       - OTEL_EXPORTER_OTLP_ENDPOINT=${DASH0_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
       - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Bearer ${DASH0_AUTH_TOKEN}
       - OTEL_METRICS_EXPORTER=otlp
     healthcheck:
@@ -46,6 +47,7 @@ services:
       - NODE_OPTIONS=-r @opentelemetry/auto-instrumentations-node/register
       - OTEL_SERVICE_NAME=kitchen-service
       - OTEL_EXPORTER_OTLP_ENDPOINT=${DASH0_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
       - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Bearer ${DASH0_AUTH_TOKEN}
       - OTEL_METRICS_EXPORTER=otlp
     healthcheck:
@@ -68,6 +70,7 @@ services:
       - NODE_OPTIONS=-r @opentelemetry/auto-instrumentations-node/register
       - OTEL_SERVICE_NAME=delivery-service
       - OTEL_EXPORTER_OTLP_ENDPOINT=${DASH0_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
       - OTEL_EXPORTER_OTLP_HEADERS=Authorization=Bearer ${DASH0_AUTH_TOKEN}
       - OTEL_METRICS_EXPORTER=otlp
     healthcheck:
